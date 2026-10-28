@@ -1,19 +1,12 @@
 <!doctype html>
+
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#171b12">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#171b12" name="theme-color"/>
 <title>阿然的賽博剃頭｜CYBER BUZZ CUT FOR JAN</title>
 <style>
-/* 英文主標題 */
-h1 {
-  font-family: 'GlitchGoblin', Impact, sans-serif;
-}
-/* 中文副標題與區塊標題 */
-.subtitle, h2, .shave-heading {
-  font-family: 'PixelChinese', 'Microsoft JhengHei', sans-serif;
-}
 :root{
   --bg:#11150f;--panel:rgba(17,22,15,.94);--panel2:rgba(27,34,23,.96);
   --line:#6f7947;--line2:#a6a96a;--text:#e8e9d5;--muted:#a8ad92;
@@ -122,129 +115,484 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:820px){.grid{grid-template-columns:1fr}.wrap{width:min(680px,calc(100% - 22px));padding-top:14px}.panel-inner{padding:18px}.side-stack{display:grid;grid-template-columns:1fr 1fr}}
 @media(max-width:560px){header{padding:25px 5px 20px}h1{font-size:clamp(29px,10vw,46px)}.subtitle{font-size:15px}.side-stack{display:flex}.head-status{grid-template-columns:1fr}.head-number{font-size:68px}.metrics{gap:5px}.metric{padding:10px 4px}.metric strong{font-size:18px}.metric small{font-size:10px}.topline{font-size:9px}.panel-inner{padding:16px}}
+
+
+/* Legible copy, slightly quieter numbers, and an accessible language toggle. */
+.topline { font-size:15px; text-transform:none; letter-spacing:.035em; align-items:flex-start }
+.status { max-width:calc(100% - 100px); line-height:1.55; white-space:normal; text-transform:none }
+.lang-toggle { flex-shrink:0; margin-left:auto; min-width:75px; padding:9px 13px; background:#202b1b;
+  color:#e6edc2; border:1px solid #a4b46b; border-radius:3px; cursor:pointer;
+  font:800 15px/1.25 system-ui,"Microsoft JhengHei",sans-serif; letter-spacing:.06em; }
+.lang-toggle:hover { background:#39482c }
+.lang-toggle:focus-visible{outline:2px solid #e2dc9e;outline-offset:3px}
+.section-tag{font-size:14px}
+.subtitle{font-size:21px}
+.head-label{font-size:18px}
+.remaining-copy{font-size:19px}
+.progress-meta{font-size:14px}
+.metric small{font-size:14px}
+.metric em{font-size:14px;line-height:1.45;display:block}
+.metric strong{font-size:19px}
+.head-number{font-size:clamp(51px,8vw,79px)}
+.shave-heading{font-size:20px!important}
+h2{font-size:24px}
+label{font-size:17px}
+input,textarea{font-size:18px}
+.hint{font-size:15px;line-height:1.75}
+.choice{font-size:17px}
+.custom-wrap span{font-size:16px}
+.submit{font-size:18px;letter-spacing:.09em;line-height:1.55}
+.rules-wide-button{font-size:20px}
+.info-view .rules li,.rules li{font-size:17px;line-height:1.8}
+.rules b{font-size:13px;width:24px;height:24px}
+.rules li{grid-template-columns:27px 1fr}
+.privacy-content h3{font-size:18px}
+.privacy-content p,.privacy-content li{font-size:16px}
+.notice{font-size:17px}
+.data-note{font-size:15px}
+footer{font-size:14px;line-height:1.9}
+.toast{font-size:17px}
+@media(max-width:560px){
+ .topline{font-size:13px;gap:9px}
+ .lang-toggle{min-width:62px;font-size:14px;padding:8px 10px}
+ .status{max-width:calc(100% - 75px)}
+ .subtitle{font-size:18px;letter-spacing:.12em}
+ .head-number{font-size:65px}
+ .metric strong{font-size:16px}
+ .metric small{font-size:13px}
+ .metric em{font-size:12px}
+ .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .metric{min-width:0;overflow-wrap:anywhere}
+ .panel-inner{padding:16px}
+ .rules-wide-button{font-size:18px}
+}
 </style>
 </head>
 <body>
-<canvas id="camoCanvas" aria-hidden="true"></canvas>
+<canvas aria-hidden="true" id="camoCanvas"></canvas>
 <div class="wrap">
-  <div class="topline" id="homeTopline">
-    
-    <span class="status"><i class="dot"></i> CYBER BUZZ CUT // 2026</span>
-  </div>
-
-  <header id="homeHeader">
-    
-    <h1>CYBER BUZZ CUT FOR JAN</h1>
-    <div class="subtitle">阿 然 的 賽 博 剃 頭</div>
-    <div class="header-rule"></div>
-  </header>
-
-  <main class="grid">
-    <section>
-      <div class="panel">
-        <div class="panel-inner">
-          <div class="section-tag">01 // CURRENT PROGRESS</div>
-          <div class="head-status">
-            <div>
-              <div class="head-label">頭上還有：</div>
-              <div class="head-number" id="remaining">500</div>
-              <div class="remaining-copy">cm² 的頭髮</div>
-            </div>
-
-          </div>
-          <div class="progress-meta"><span>目前進度</span><span id="progressText">0 / 500 cm²</span></div>
-          <div class="progress"><span id="progressBar"></span></div>
-
-          <div class="shave-control">
-            <label class="shave-heading">幫我剃一刀</label>
-            <div class="choice-row">
-              <label class="choice"><input type="radio" name="mode" value="random" checked> 隨機（1～100 cm²）</label>
-              <label class="choice"><input type="radio" name="mode" value="custom"> 自訂</label>
-              <div class="custom-wrap"><input id="customArea" type="number" min="1" max="100" step="1" placeholder="1～100" disabled><span>cm²</span></div>
-            </div>
-            <div class="hint">每次提交固定剃一刀；自訂面積請輸入 1～100 的整數。</div>
-          </div>
-
-          <div class="metrics">
-            <div class="metric"><small>目前有</small><strong id="participantCount">0</strong><em> 個人剃過頭了</em></div>
-            <div class="metric"><small>累計剃除面積</small><strong id="total">0</strong><em> cm²</em></div>
-            <div class="metric"><small>目前已經剃掉</small><strong id="completed">0</strong><em> 顆阿然的頭了</em></div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="panel form-panel">
-        <div class="panel-inner">
-          <h2><span class="icon">▤</span>留言板</h2>
-          <form id="shaveForm">
-            <input id="nickname" maxlength="30" required aria-label="暱稱" placeholder="">
-            <div class="hint">不需要填寫真實姓名，使用我認得出來的暱稱就可以。</div>
-
-            <label for="message">說點什麼好笑的或祝福的話ㄅ（選填）</label>
-            <textarea id="message" maxlength="500" placeholder="想對我說的話……"></textarea>
-            <div class="hint">留言目前只有阿然看得見，不過他會考慮把留言整理後發到 FB 或 IG。公開個別留言前會先取得同意。</div>
-            <button class="submit" type="submit" id="submitShave" disabled aria-describedby="submissionNote">▸▸　送 出，祝 阿 然 一 路 好 走　◂◂</button>
-            <div class="hint" id="submissionNote" role="status" aria-live="polite">正在檢查資料庫連線……</div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <button class="rules-wide-button" id="openRules" type="button">▸　參與說明　▸</button>
-  </main>
-
-
-  <section class="view info-view" id="rulesView" hidden>
-    <div class="topline"><span class="status"><i class="dot"></i> OPERATION INFORMATION</span></div>
-    <header>
-      <h1>CYBER BUZZ CUT FOR JAN</h1>
-      <div class="subtitle">參 與 說 明</div>
-      <div class="header-rule"></div>
-    </header>
-    <div class="panel" id="rules">
-      <div class="panel-inner">
-        <h2>參與說明</h2>
-        <ul class="rules">
-          <li><b>01</b><span>留下暱稱即可參與，不需要提供真實姓名或聯絡方式。</span></li>
-          <li><b>02</b><span>每個暱稱原則上只能參與一次；送出後無法自行修改，若有紀錄錯誤請聯絡阿然。</span></li>
-          <li><b>03</b><span>活動截止時間為 <strong>2026/11/05 23:59（台灣時間）</strong>，截止後不再接受新提交。</span></li>
-        </ul>
-      </div>
-    </div>
-    <button class="back-link" id="backHome" type="button">◂　返回首頁</button>
-  </section>
-
-  <footer>
-    <div>© 2026 CYBER BUZZ CUT FOR JAN. All Rights Reserved.<br>本網站部分程式碼、文字內容及視覺設計係使用 OpenAI ChatGPT 協助生成，並經阿然編修及整合。<br>本網站僅供個人紀念及非營利活動使用。</div>
-    <div><a href="#privacy" id="privacyLink" aria-controls="privacy" aria-expanded="false">隱私權與使用說明</a>　|　<a href="mailto:dzzrabbit@gmail.com">聯絡阿然</a></div>
-  </footer>
-
-  <section class="privacy" id="privacy" hidden aria-label="隱私權與使用說明">
-      <div class="privacy-content">
-        <h2>隱私權與使用說明</h2>
-        <h3>一、管理者與聯絡方式</h3>
-        <p>本網站管理者為阿然（戴子然）。如對資料使用有疑問，或欲提出資料查詢、更正及刪除需求，可透過 dzzrabbit@gmail.com 聯絡。</p>
-        <p class="notice">啟用投稿功能後，表單資料會傳送到 Supabase 資料庫保存；若未完成資料庫設定，投稿按鈕將維持停用。</p>
-        <h3>二、蒐集資料與使用目的</h3>
-        <p>本活動蒐集暱稱、剃除面積、留言內容（如有填寫）、提交時間及起始所屬頭部編號，供計算剃頭進度、統計參與情形、管理活動紀錄及保存留言。參與者不需要提供真實姓名或聯絡方式；留言為選填。</p>
-        <h3>三、資料保存與存取</h3>
-        <p>啟用後，投稿資料儲存在 Supabase 資料庫；網頁經由 GitHub Pages 提供服務。公開網頁只取得參與人數及剃除進度等彙總統計，不會取得個別暱稱及留言。活動資料用於管理、統計及紀念，並於活動紀念目的存續期間內保存；資料保存地區依實際選定的 Supabase 專案區域為準。</p>
-        <p>完整參與紀錄由阿然負責管理及查閱；網站託管與資料庫服務供應商可能因提供服務而處理必要資料。除法律要求、網站運作必要情形或參與者另行同意外，不會任意提供給無關第三方。</p>
-        <h3>四、留言與社群分享</h3>
-        <p>留言內容預設僅由阿然查看。阿然可能考慮將留言整理後分享到 Facebook 或 Instagram；若要公開可辨識個別參與者的留言內容，會先取得留言者同意。請勿在留言中提供自己或他人的敏感個人資料。</p>
-        <h3>五、資料權利與使用注意事項</h3>
-        <p>參與者可透過上述聯絡方式提出資料查詢、閱覽、複製、更正、停止利用或刪除等需求，阿然將依適用法令及實際資料保存情形處理。暱稱為參與活動所需資料；留言可不填寫，不影響參與。</p>
-        <p class="data-note">資料處理方式如有調整，將更新本說明。需要查詢或行使個人資料相關權利，請聯絡阿然。</p>
-      </div>
-  </section>
-
+<div class="topline" id="homeTopline">
+<span class="status"><i class="dot"></i><span data-i18n="intro">當兵要剃頭，不可以只有自己玩，所以......</span></span>
+<button aria-label="Switch to English" class="lang-toggle" id="languageToggle" type="button">EN</button></div>
+<header id="homeHeader">
+<h1>CYBER BUZZ CUT FOR JAN</h1>
+<div class="subtitle" data-i18n="subtitle">阿 然 的 賽 博 剃 頭</div>
+<div class="header-rule"></div>
+</header>
+<main class="grid">
+<section>
+<div class="panel">
+<div class="panel-inner">
+<div class="section-tag" data-i18n="progressHeading">01 // CURRENT PROGRESS</div>
+<div class="head-status">
+<div>
+<div class="head-label" data-i18n="headLabel">頭上還有：</div>
+<div class="head-number" id="remaining">500</div>
+<div class="remaining-copy" data-i18n="headUnit">cm² 的頭髮</div>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<div class="progress-meta"><span data-i18n="progressLabel">目前進度</span><span id="progressText">0 / 500 cm²</span></div>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="shave-control">
+<label class="shave-heading" data-i18n="shaveTitle">幫我剃一刀</label>
+<div class="choice-row">
+<label class="choice"><input checked="" name="mode" type="radio" value="random"/><span data-i18n="random">隨機（1～100 cm²）</span></label>
+<label class="choice"><input name="mode" type="radio" value="custom"/><span data-i18n="custom">自訂</span></label>
+<div class="custom-wrap"><input disabled="" id="customArea" max="100" min="1" placeholder="1～100" step="1" type="number"/><span data-i18n="areaUnit">cm²</span></div>
+</div>
+<div class="hint" data-i18n="shaveHint">每次提交固定剃一刀；自訂面積請輸入 1～100 的整數。</div>
+</div>
+<div class="metrics">
+<div class="metric"><small data-i18n="participantsLabel">目前有</small><strong id="participantCount">0</strong><em data-i18n="participantsUnit"> 個人剃過頭了</em></div>
+<div class="metric"><small data-i18n="totalLabel">累計剃除面積</small><strong id="total">0</strong><em data-i18n="totalUnit"> cm²</em></div>
+<div class="metric"><small data-i18n="completedLabel">目前已經剃掉</small><strong id="completed">0</strong><em data-i18n="completedUnit"> 顆阿然的頭了</em></div>
+</div>
+</div>
+</div>
+<div class="panel form-panel">
+<div class="panel-inner">
+<h2><span class="icon">▤</span><span data-i18n="messageBoard">留言板</span></h2>
+<form id="shaveForm">
+<input aria-label="暱稱" data-i18n-aria="nicknameAria" id="nickname" maxlength="30" placeholder="" required=""/>
+<div class="hint" data-i18n="nicknameHint">不需要填寫真實姓名，使用我認得出來的暱稱就可以。</div>
+<label data-i18n="messageLabel" for="message">說點什麼好笑的或祝福的話ㄅ（選填）</label>
+<textarea data-i18n-placeholder="messagePlaceholder" id="message" maxlength="500" placeholder="想對我說的話……"></textarea>
+<div class="hint" data-i18n="messagePrivacy">留言目前只有阿然看得見，不過他會考慮把留言整理後發到 FB 或 IG。公開個別留言前會先取得同意。</div>
+<button aria-describedby="submissionNote" class="submit" data-i18n="submitText" disabled="" id="submitShave" type="submit">▸▸　送 出，祝 阿 然 一 路 好 走　◂◂</button>
+<div aria-live="polite" class="hint" id="submissionNote" role="status">正在檢查資料庫連線……</div>
+</form>
+</div>
+</div>
+</section>
+<button class="rules-wide-button" data-i18n="openRules" id="openRules" type="button">▸　參與說明　▸</button>
+</main>
+<section class="view info-view" hidden="" id="rulesView">
+<div class="topline"><span class="status"><i class="dot"></i><span data-i18n="rulesStatus">OPERATION INFORMATION</span></span></div>
+<header>
+<h1>CYBER BUZZ CUT FOR JAN</h1>
+<div class="subtitle" data-i18n="rulesSubtitle">參 與 說 明</div>
+<div class="header-rule"></div>
+</header>
+<div class="panel" id="rules">
+<div class="panel-inner">
+<h2 data-i18n="rulesTitle">參與說明</h2>
+<ul class="rules">
+<li><b>01</b><span data-i18n="rule1">留下暱稱即可參與，不需要提供真實姓名或聯絡方式。</span></li>
+<li><b>02</b><span data-i18n="rule2">每個暱稱原則上只能參與一次；送出後無法自行修改，若有紀錄錯誤請聯絡阿然。</span></li>
+<li><b>03</b><span><span data-i18n="rule3Before">活動截止時間為 </span><strong data-i18n="rule3Date">2026/11/05 23:59（台灣時間）</strong><span data-i18n="rule3After">，截止後不再接受新提交。</span></span></li>
+</ul>
+</div>
+</div>
+<button class="back-link" data-i18n="backHome" id="backHome" type="button">◂　返回首頁</button>
+</section>
+<footer>
+<div>© 2026 CYBER BUZZ CUT FOR JAN. All Rights Reserved.<br/><span data-i18n="copyrightAi">本網站部分程式碼、文字內容及視覺設計係使用 OpenAI ChatGPT 協助生成，並經阿然編修及整合。</span><br/><span data-i18n="copyrightUse">本網站僅供個人紀念及非營利活動使用。</span></div>
+<div><a aria-controls="privacy" aria-expanded="false" data-i18n="privacyLink" href="#privacy" id="privacyLink">隱私權與使用說明</a>　|　<a data-i18n="contact" href="mailto:dzzrabbit@gmail.com">聯絡阿然</a></div>
+</footer>
+<section aria-label="隱私權與使用說明" class="privacy" data-i18n-aria="privacyAria" hidden="" id="privacy">
+<div class="privacy-content">
+<h2 data-i18n="privacyTitle">隱私權與使用說明</h2>
+<h3 data-i18n="privacyH1">一、管理者與聯絡方式</h3>
+<p data-i18n="privacyP1">本網站管理者為阿然（戴子然）。如對資料使用有疑問，或欲提出資料查詢、更正及刪除需求，可透過 dzzrabbit@gmail.com 聯絡。</p>
+<p class="notice" data-i18n="privacyP2">啟用投稿功能後，表單資料會傳送到 Supabase 資料庫保存；若未完成資料庫設定，投稿按鈕將維持停用。</p>
+<h3 data-i18n="privacyH2">二、蒐集資料與使用目的</h3>
+<p data-i18n="privacyP3">本活動蒐集暱稱、剃除面積、留言內容（如有填寫）、提交時間及起始所屬頭部編號，供計算剃頭進度、統計參與情形、管理活動紀錄及保存留言。參與者不需要提供真實姓名或聯絡方式；留言為選填。</p>
+<h3 data-i18n="privacyH3">三、資料保存與存取</h3>
+<p data-i18n="privacyP4">啟用後，投稿資料儲存在 Supabase 資料庫；網頁經由 GitHub Pages 提供服務。公開網頁只取得參與人數及剃除進度等彙總統計，不會取得個別暱稱及留言。活動資料用於管理、統計及紀念，並於活動紀念目的存續期間內保存；資料保存地區依實際選定的 Supabase 專案區域為準。</p>
+<p data-i18n="privacyP5">完整參與紀錄由阿然負責管理及查閱；網站託管與資料庫服務供應商可能因提供服務而處理必要資料。除法律要求、網站運作必要情形或參與者另行同意外，不會任意提供給無關第三方。</p>
+<h3 data-i18n="privacyH4">四、留言與社群分享</h3>
+<p data-i18n="privacyP6">留言內容預設僅由阿然查看。阿然可能考慮將留言整理後分享到 Facebook 或 Instagram；若要公開可辨識個別參與者的留言內容，會先取得留言者同意。請勿在留言中提供自己或他人的敏感個人資料。</p>
+<h3 data-i18n="privacyH5">五、資料權利與使用注意事項</h3>
+<p data-i18n="privacyP7">參與者可透過上述聯絡方式提出資料查詢、閱覽、複製、更正、停止利用或刪除等需求，阿然將依適用法令及實際資料保存情形處理。暱稱為參與活動所需資料；留言可不填寫，不影響參與。</p>
+<p class="data-note" data-i18n="privacyP8">資料處理方式如有調整，將更新本說明。需要查詢或行使個人資料相關權利，請聯絡阿然。</p>
+</div>
+</section>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
 <script>
 (() => {
 
   const $ = id => document.getElementById(id);
+  const I18N = {
+  "intro": {
+    "zh": "當兵要剃頭，不能只有自己玩，所以......",
+    "en": "Joining the army means getting a buzz cut. I don't want to enjyo all the fun myself, so..."
+  },
+  "subtitle": {
+    "zh": "阿 然 的 賽 博 剃 頭",
+    "en": "JAN’S CYBER BUZZ CUT"
+  },
+  "progressHeading": {
+    "zh": "01 // CURRENT PROGRESS",
+    "en": "01 // CURRENT PROGRESS"
+  },
+  "headLabel": {
+    "zh": "頭上還有：",
+    "en": "Hair left on my head:"
+  },
+  "headUnit": {
+    "zh": "cm² 的頭髮",
+    "en": "cm² of hair"
+  },
+  "progressLabel": {
+    "zh": "目前進度",
+    "en": "Current progress"
+  },
+  "shaveTitle": {
+    "zh": "幫我剃一刀",
+    "en": "Give me a buzz cut"
+  },
+  "random": {
+    "zh": "隨機（1～100 cm²）",
+    "en": "Random (1–100 cm²)"
+  },
+  "custom": {
+    "zh": "自訂",
+    "en": "Custom"
+  },
+  "shaveHint": {
+    "zh": "每次提交固定剃一刀；自訂面積請輸入 1～100 的整數。",
+    "en": "Each submission counts as one cut. Custom area must be a whole number from 1 to 100."
+  },
+  "areaUnit": {
+    "zh": "cm²",
+    "en": "cm²"
+  },
+  "participantsLabel": {
+    "zh": "目前有",
+    "en": "So far"
+  },
+  "participantsUnit": {
+    "zh": " 個人剃過頭了",
+    "en": "people have shaved my head"
+  },
+  "totalLabel": {
+    "zh": "累計剃除面積",
+    "en": "Total area shaved"
+  },
+  "totalUnit": {
+    "zh": " cm²",
+    "en": "cm²"
+  },
+  "completedLabel": {
+    "zh": "目前已經剃掉",
+    "en": "Completed"
+  },
+  "completedUnit": {
+    "zh": " 顆阿然的頭了",
+    "en": "of Jan’s heads"
+  },
+  "messageBoard": {
+    "zh": "留言板",
+    "en": "Message board"
+  },
+  "nicknameAria": {
+    "zh": "暱稱",
+    "en": "Nickname"
+  },
+  "nicknameHint": {
+    "zh": "不需要填寫真實姓名，使用我認得出來的暱稱就可以。",
+    "en": "No real name needed. Just use a nickname I’ll recognize."
+  },
+  "messageLabel": {
+    "zh": "說點什麼好笑的或祝福的話ㄅ（選填）",
+    "en": "Say something funny or leave a nice message (optional)"
+  },
+  "messagePlaceholder": {
+    "zh": "想對我說的話……",
+    "en": "Anything you want to say to me…"
+  },
+  "messagePrivacy": {
+    "zh": "留言目前只有阿然看得見，不過他會考慮把留言整理後發到 FB 或 IG。公開個別留言前會先取得同意。",
+    "en": "Only Jan can see your message for now, but he might compile and share messages on Facebook or Instagram. Permission will be obtained before sharing identifiable messages."
+  },
+  "submitText": {
+    "zh": "▸▸　送 出，祝 阿 然 一 路 好 走　◂◂",
+    "en": "▸▸  SUBMIT — SEND JAN OFF IN STYLE  ◂◂"
+  },
+  "openRules": {
+    "zh": "▸　參與說明　▸",
+    "en": "▸  HOW TO PARTICIPATE  ▸"
+  },
+  "rulesStatus": {
+    "zh": "OPERATION INFORMATION",
+    "en": "OPERATION INFORMATION"
+  },
+  "rulesSubtitle": {
+    "zh": "參 與 說 明",
+    "en": "HOW TO PARTICIPATE"
+  },
+  "rulesTitle": {
+    "zh": "參與說明",
+    "en": "How to participate"
+  },
+  "rule1": {
+    "zh": "留下暱稱即可參與，不需要提供真實姓名或聯絡方式。",
+    "en": "Leave a nickname to participate. There’s no need to provide your real name or contact details."
+  },
+  "rule2": {
+    "zh": "每個暱稱原則上只能參與一次；送出後無法自行修改，若有紀錄錯誤請聯絡阿然。",
+    "en": "Each nickname may participate once. You cannot edit a submission yourself after sending it. If there’s a mistake, contact Jan."
+  },
+  "rule3Before": {
+    "zh": "活動截止時間為 ",
+    "en": "The event closes at "
+  },
+  "rule3Date": {
+    "zh": "2026/11/05 23:59（台灣時間）",
+    "en": "11:59 PM on November 5, 2026 (Taiwan time)"
+  },
+  "rule3After": {
+    "zh": "，截止後不再接受新提交。",
+    "en": ". No new submissions will be accepted afterward."
+  },
+  "backHome": {
+    "zh": "◂　返回首頁",
+    "en": "◂  BACK TO HOME"
+  },
+  "copyrightAi": {
+    "zh": "本網站部分程式碼、文字內容及視覺設計係使用 OpenAI ChatGPT 協助生成，並經阿然編修及整合。",
+    "en": "Some code, text, and visual design on this website were created with assistance from OpenAI ChatGPT and edited and integrated by Jan."
+  },
+  "copyrightUse": {
+    "zh": "本網站僅供個人紀念及非營利活動使用。",
+    "en": "This website is for personal commemoration and noncommercial use only."
+  },
+  "privacyLink": {
+    "zh": "隱私權與使用說明",
+    "en": "Privacy & terms of use"
+  },
+  "contact": {
+    "zh": "聯絡阿然",
+    "en": "Contact Jan"
+  },
+  "privacyAria": {
+    "zh": "隱私權與使用說明",
+    "en": "Privacy & terms of use"
+  },
+  "privacyTitle": {
+    "zh": "隱私權與使用說明",
+    "en": "Privacy & terms of use"
+  },
+  "privacyH1": {
+    "zh": "一、管理者與聯絡方式",
+    "en": "1. Administrator and contact"
+  },
+  "privacyH2": {
+    "zh": "二、蒐集資料與使用目的",
+    "en": "2. Data collected and its purpose"
+  },
+  "privacyH3": {
+    "zh": "三、資料保存與存取",
+    "en": "3. Data storage and access"
+  },
+  "privacyH4": {
+    "zh": "四、留言與社群分享",
+    "en": "4. Messages and social sharing"
+  },
+  "privacyH5": {
+    "zh": "五、資料權利與使用注意事項",
+    "en": "5. Your rights and notes on use"
+  },
+  "privacyP1": {
+    "zh": "本網站管理者為阿然（戴子然）。如對資料使用有疑問，或欲提出資料查詢、更正及刪除需求，可透過 dzzrabbit@gmail.com 聯絡。",
+    "en": "This website is managed by Jan (戴子然). For questions about the use of your data, or to request access, correction, or deletion, please email dzzrabbit@gmail.com."
+  },
+  "privacyP2": {
+    "zh": "啟用投稿功能後，表單資料會傳送到 Supabase 資料庫保存；若未完成資料庫設定，投稿按鈕將維持停用。",
+    "en": "Once submissions are enabled, form data will be stored in a Supabase database. If the database is not ready, the submit button will remain disabled."
+  },
+  "privacyP3": {
+    "zh": "本活動蒐集暱稱、剃除面積、留言內容（如有填寫）、提交時間及起始所屬頭部編號，供計算剃頭進度、統計參與情形、管理活動紀錄及保存留言。參與者不需要提供真實姓名或聯絡方式；留言為選填。",
+    "en": "This event collects your nickname, shaved area, message (if provided), submission time, and the starting head number associated with your submission. These are used to calculate shaving progress, count participants, manage event records, and save messages. You do not need to provide your real name or contact information. Messages are optional."
+  },
+  "privacyP4": {
+    "zh": "啟用後，投稿資料儲存在 Supabase 資料庫；網頁經由 GitHub Pages 提供服務。公開網頁只取得參與人數及剃除進度等彙總統計，不會取得個別暱稱及留言。活動資料用於管理、統計及紀念，並於活動紀念目的存續期間內保存；資料保存地區依實際選定的 Supabase 專案區域為準。",
+    "en": "Once enabled, submissions will be stored in Supabase and the website will be hosted on GitHub Pages. The public page only retrieves aggregate statistics such as participation and shaved area; it does not retrieve individual nicknames or messages. Event data is kept for administration, statistics, and as a memento while that purpose continues. The storage region depends on the Supabase project configuration."
+  },
+  "privacyP5": {
+    "zh": "完整參與紀錄由阿然負責管理及查閱；網站託管與資料庫服務供應商可能因提供服務而處理必要資料。除法律要求、網站運作必要情形或參與者另行同意外，不會任意提供給無關第三方。",
+    "en": "Jan manages and accesses full submissions. The hosting and database service providers may process necessary data to provide their services. Data will not otherwise be shared with unrelated third parties without a legal requirement, operational necessity, or your consent."
+  },
+  "privacyP6": {
+    "zh": "留言內容預設僅由阿然查看。阿然可能考慮將留言整理後分享到 Facebook 或 Instagram；若要公開可辨識個別參與者的留言內容，會先取得留言者同意。請勿在留言中提供自己或他人的敏感個人資料。",
+    "en": "Only Jan can view submitted messages by default. Jan may consider compiling messages for Facebook or Instagram. He will request permission before publishing messages that identify individual participants. Please do not include sensitive personal information about yourself or others."
+  },
+  "privacyP7": {
+    "zh": "參與者可透過上述聯絡方式提出資料查詢、閱覽、複製、更正、停止利用或刪除等需求，阿然將依適用法令及實際資料保存情形處理。暱稱為參與活動所需資料；留言可不填寫，不影響參與。",
+    "en": "You may contact Jan to request access, a copy, corrections, cessation of use, or deletion of your personal data. Requests will be handled according to applicable law and the actual data held. A nickname is required to participate; leaving a message is optional."
+  },
+  "privacyP8": {
+    "zh": "資料處理方式如有調整，將更新本說明。需要查詢或行使個人資料相關權利，請聯絡阿然。",
+    "en": "This notice will be updated if data handling changes. Please contact Jan with questions or requests concerning your personal data."
+  },
+  "checking": {
+    "zh": "正在檢查資料庫連線……",
+    "en": "Checking database connection…"
+  },
+  "loadingStats": {
+    "zh": "資料讀取中",
+    "en": "Loading stats…"
+  },
+  "closed": {
+    "zh": "活動已於 2026/11/05 23:59（台灣時間）截止。",
+    "en": "The event closed at 11:59 PM on November 5, 2026 (Taiwan time)."
+  },
+  "connected": {
+    "zh": "連線成功！每個暱稱限參加一次，送出後不能自行修改。",
+    "en": "Connected! Each nickname may participate once, and submissions cannot be edited afterward."
+  },
+  "connectionError": {
+    "zh": "無法讀取資料庫，請檢查 Supabase 設定並重新整理。",
+    "en": "Could not load the database. Please check the Supabase setup and reload."
+  },
+  "nicknameError": {
+    "zh": "請填寫 1～30 字的暱稱。",
+    "en": "Please enter a nickname between 1 and 30 characters."
+  },
+  "areaError": {
+    "zh": "自訂面積必須是 1～100 的整數。",
+    "en": "Custom area must be a whole number from 1 to 100."
+  },
+  "messageError": {
+    "zh": "留言不能超過 500 字。",
+    "en": "Your message must be 500 characters or fewer."
+  },
+  "saving": {
+    "zh": "正在將參與資料儲存至資料庫……",
+    "en": "Saving your submission to the database…"
+  },
+  "submitSuccess": {
+    "zh": "投稿成功！本次剃掉 {area} cm²，資料已儲存。請勿重複送出。",
+    "en": "Submitted! {area} cm² shaved and your data was saved. Please do not submit again."
+  },
+  "toastSuccess": {
+    "zh": "成功剃掉 {area} cm²，祝阿然一路好走！",
+    "en": "{area} cm² shaved — send Jan off in style!"
+  },
+  "EVENT_CLOSED": {
+    "zh": "活動已截止，無法繼續投稿。",
+    "en": "The event has ended. New submissions are closed."
+  },
+  "DUPLICATE_NICKNAME": {
+    "zh": "這個暱稱已經參加過，請確認是否重複送出。",
+    "en": "This nickname has already participated. Please check whether you submitted earlier."
+  },
+  "INVALID_NICKNAME": {
+    "zh": "暱稱格式不正確，請修改後再送出。",
+    "en": "Invalid nickname. Please correct it and try again."
+  },
+  "INVALID_AREA": {
+    "zh": "剃除面積必須是 1～100 的整數。",
+    "en": "The shaved area must be a whole number from 1 to 100."
+  },
+  "MESSAGE_TOO_LONG": {
+    "zh": "留言不能超過 500 字。",
+    "en": "Your message must be 500 characters or fewer."
+  },
+  "genericError": {
+    "zh": "提交失敗或網路連線中斷，請先確認是否已成功送出，再嘗試重試。",
+    "en": "Submission failed or the connection dropped. Please check whether it went through before trying again."
+  },
+  "unconfigured": {
+    "zh": "尚未設定 Supabase Project URL 與 Publishable Key，投稿功能維持停用。",
+    "en": "Supabase Project URL or Publishable Key is not configured. Submissions are disabled."
+  }
+};
+  let currentLanguage = 'zh';
+  let currentNote = {key:'checking',params:{}};
+  let currentToast = {key:null,params:{}};
+  function translate(key, params={}) {
+    const template = I18N[key]?.[currentLanguage] ?? key;
+    return template.replace(/\{([a-z]+)\}/g, (match, name) => String(params[name] ?? match));
+  }
+  function renderLanguage() {
+    document.documentElement.lang = currentLanguage === 'zh' ? 'zh-Hant' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(node => {
+      node.textContent = translate(node.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(node => {
+      node.placeholder = translate(node.dataset.i18nPlaceholder);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(node => {
+      node.setAttribute('aria-label',translate(node.dataset.i18nAria));
+    });
+    $('languageToggle').textContent = currentLanguage === 'zh' ? 'EN' : '中文';
+    $('languageToggle').setAttribute('aria-label',currentLanguage === 'zh' ? 'Switch to English' : '切換為繁體中文');
+    $('submissionNote').textContent = translate(currentNote.key,currentNote.params);
+    if(currentToast.key && $('toast').classList.contains('show')) {
+      $('toast').textContent = translate(currentToast.key,currentToast.params);
+    }
+    if($('progressText').dataset.loading === 'true') {
+      $('progressText').textContent = translate('loadingStats');
+    }
+  }
+  $('languageToggle').addEventListener('click', () => {
+    currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+    renderLanguage();
+  });
+  renderLanguage();
+
   // Different arrangement on every load; all rectangles stay aligned to pixel cells.
   const camoCanvas = $('camoCanvas');
   const camoCtx = camoCanvas.getContext('2d', {alpha: false});
@@ -354,13 +702,15 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
   let connected = false;
   let toastTimeout;
 
-  function setNote(message) {
-    submissionNote.textContent = message;
+  function setNote(key, params = {}) {
+    currentNote = {key, params};
+    submissionNote.textContent = translate(key, params);
   }
 
-  function showToast(message) {
+  function showToast(key, params = {}) {
+    currentToast = {key, params};
     const toast = $('toast');
-    toast.textContent = message;
+    toast.textContent = translate(key, params);
     toast.classList.add('show');
     clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => toast.classList.remove('show'), 6500);
@@ -369,7 +719,7 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
   function updateButtonState() {
     const closed = Date.now() >= EVENT_CLOSE_AT;
     submitButton.disabled = !configured || !connected || submitting || submitted || closed;
-    if (closed && !submitted) setNote('活動已於 2026/11/05 23:59（台灣時間）截止。');
+    if (closed && !submitted) setNote('closed');
   }
 
   function displayStats(stats) {
@@ -379,6 +729,7 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
     const progress = total % HEAD_AREA;
     const remaining = HEAD_AREA - progress;
     $('remaining').textContent = remaining.toLocaleString('zh-TW');
+    $('progressText').dataset.loading = 'false';
     $('progressText').textContent = `${progress.toLocaleString('zh-TW')} / ${HEAD_AREA} cm²`;
     $('progressBar').style.width = `${(progress / HEAD_AREA) * 100}%`;
     $('participantCount').textContent = participants.toLocaleString('zh-TW');
@@ -388,7 +739,8 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
 
   // 讀取成功前顯示未知，不將未連線誤寫成 0 人。
   ['remaining', 'participantCount', 'total', 'completed'].forEach(id => {$(id).textContent = '—';});
-  $('progressText').textContent = '資料讀取中';
+  $('progressText').dataset.loading = 'true';
+  $('progressText').textContent = translate('loadingStats');
   $('progressBar').style.width = '0%';
 
   async function callRpc(name, payload = {}) {
@@ -418,11 +770,11 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
       if (!stats || typeof stats !== 'object') throw new Error('INVALID_STATS');
       displayStats(stats);
       connected = true;
-      if (initial && !submitted) setNote('連線成功！每個暱稱限參加一次，送出後不能自行修改。');
+      if (initial && !submitted) setNote('connected');
     } catch (error) {
       console.error('讀取剃頭統計失敗：', error);
       connected = false;
-      if (!submitted) setNote('無法讀取資料庫，請檢查 Supabase 設定並重新整理。');
+      if (!submitted) setNote('connectionError');
     } finally {
       updateButtonState();
     }
@@ -446,21 +798,21 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
       : Math.floor(Math.random() * 100) + 1;
 
     if (!nickname || nickname.length > 30) {
-      setNote('請填寫 1～30 字的暱稱。');
+      setNote('nicknameError');
       return;
     }
     if (!Number.isInteger(shavedArea) || shavedArea < 1 || shavedArea > 100
         || (mode === 'custom' && custom.value.trim() === '')) {
-      setNote('自訂面積必須是 1～100 的整數。');
+      setNote('areaError');
       return;
     }
     if (message.length > 500) {
-      setNote('留言不能超過 500 字。');
+      setNote('messageError');
       return;
     }
 
     submitting = true;
-    setNote('正在將參與資料儲存至資料庫……');
+    setNote('saving');
     updateButtonState();
     try {
       const result = await callRpc('submit_shave', {
@@ -476,20 +828,14 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
       $('message').readOnly = true;
       custom.disabled = true;
       modeInputs.forEach(input => { input.disabled = true; });
-      setNote(`投稿成功！本次剃掉 ${shavedArea} cm²，資料已儲存。請勿重複送出。`);
-      showToast(`成功剃掉 ${shavedArea} cm²，祝阿然一路好走！`);
+      setNote('submitSuccess', {area: Number(result.shaved_area)});
+      showToast('toastSuccess', {area: Number(result.shaved_area)});
       await refreshStats();
     } catch (error) {
       console.error('提交剃頭資料失敗：', error);
-      const messages = {
-        EVENT_CLOSED: '活動已截止，無法繼續投稿。',
-        DUPLICATE_NICKNAME: '這個暱稱已經參加過，請確認是否重複送出。',
-        INVALID_NICKNAME: '暱稱格式不正確，請修改後再送出。',
-        INVALID_AREA: '剃除面積必須是 1～100 的整數。',
-        MESSAGE_TOO_LONG: '留言不能超過 500 字。'
-      };
-      setNote(messages[error.message] || '提交失敗或網路連線中斷，請先確認是否已成功送出，再嘗試重試。');
-      showToast(submissionNote.textContent);
+      const status_dict_keys = new Set(['EVENT_CLOSED','DUPLICATE_NICKNAME','INVALID_NICKNAME','INVALID_AREA','MESSAGE_TOO_LONG']);
+      setNote(status_dict_keys.has(error.message) ? error.message : 'genericError');
+      showToast(status_dict_keys.has(error.message) ? error.message : 'genericError');
     } finally {
       submitting = false;
       updateButtonState();
@@ -497,7 +843,7 @@ footer a{color:#d0d99a;text-decoration:underline;text-underline-offset:3px}
   });
 
   if (!configured) {
-    setNote('尚未設定 Supabase Project URL 與 Publishable Key，投稿功能維持停用。');
+    setNote('unconfigured');
   } else {
     refreshStats({initial: true});
     // 每30秒更新公開統計；不是即時訂閱，也不讀取任何個別暱稱或留言。
