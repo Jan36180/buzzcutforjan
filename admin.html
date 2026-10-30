@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#171f15">
+<title>阿然的賽博剃頭｜管理員</title>
+<style>
+@font-face{font-family:TaipeiSans;src:url('./font/TaipeiSansTCBeta-Bold.ttf') format('truetype');font-display:swap;font-weight:700}
+@font-face{font-family:GlitchGoblin;src:url('./fonts/GlitchGoblin.woff2') format('woff2');font-display:swap}
+:root{--bg:#121a14;--card:#1d2a1e;--card2:#263528;--line:#5d754a;--text:#e9efd9;--muted:#b2c1a6;--lime:#d8e99e;--gold:#e1c287;--danger:#ffa994}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;min-height:100vh;background:#131d14;color:var(--text);font:15px/1.55 TaipeiSans,"Microsoft JhengHei",sans-serif}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(90deg,#1b261a99 15%,transparent 15%),linear-gradient(0deg,#343f2999 13%,transparent 13%),linear-gradient(90deg,transparent 24%,#3d433188 25% 43%,transparent 44%),linear-gradient(0deg,transparent 64%,#5e533c66 65% 80%,transparent 81%);background-size:84px 79px,109px 113px,151px 131px,201px 177px;opacity:.65}
+.wrap{width:min(1160px,calc(100% - 28px));margin:auto;padding:22px 0 58px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:13px}.top .mark{color:var(--gold);font:700 12px monospace;letter-spacing:.15em}.back{color:var(--lime);text-decoration:none;font-size:13px}
+h1{font-size:clamp(26px,5vw,44px);margin:23px 0 4px;letter-spacing:.035em}.en{font:17px GlitchGoblin,Impact,sans-serif;color:var(--gold);letter-spacing:.08em}
+.sub{color:var(--muted);margin:0 0 24px}.panel{background:#172119f5;border:1px solid var(--line);padding:23px;margin:20px 0;box-shadow:0 12px 40px #0006}
+h2{font-size:20px;margin:0 0 14px;color:var(--lime)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:var(--card2);border:1px solid #506545;padding:14px}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{font:800 28px ui-monospace,monospace;color:var(--lime)}
+label{display:block;color:var(--lime);font-size:13px;margin:15px 0 7px}.input{width:100%;min-height:44px;background:#0e160f;border:1px solid #748360;color:var(--text);padding:11px;font:inherit;outline:none}.input:focus{outline:2px solid #9fb774;outline-offset:1px}
+button{font:700 14px TaipeiSans,"Microsoft JhengHei",sans-serif;cursor:pointer;border:1px solid #8eaa6a;color:#f3f5df;background:#45613b;min-height:42px;padding:10px 15px}button:hover:not(:disabled){filter:brightness(1.16)}button:disabled{opacity:.45;cursor:not-allowed}.outline{background:#243324;border-color:#657d52}.danger{background:#4a312c;border-color:#8e5e50}.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.login{max-width:485px;margin:32px auto}.hint{font-size:13px;color:var(--muted);line-height:1.7}.status{min-height:24px;color:var(--gold);font-size:13px;margin:12px 0}.status.error{color:var(--danger)}.tools{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:22px 0 14px}.tools .searchbox{flex:1;min-width:220px}.tools label{margin:0 0 6px}.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.entry{background:#1c2920;border:1px solid #5d7249;min-width:0;display:flex;flex-direction:column}.photo{background:#0c150f;aspect-ratio:1.16/1;display:grid;place-items:center;overflow:hidden;position:relative}.photo img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.photo .none{color:#9fb18f;font-size:13px}.info{padding:15px;flex:1;min-width:0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.name{color:var(--lime);font-size:19px;overflow-wrap:anywhere}.id{color:var(--gold);font:12px monospace}.date{color:var(--muted);font-size:12px;margin:5px 0}.area{font-size:13px;margin:7px 0}.message{background:#111d13;border-left:2px solid #9aaa6b;padding:9px 11px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:50px;color:#e8e8d9;font-size:13px}.entry button{margin:0 15px 15px}.paginate{display:flex;justify-content:center;align-items:center;gap:14px;margin:23px 0}.empty{padding:35px;text-align:center;color:var(--muted)}.tip{background:#202f20;border-left:3px solid #b4c98a;padding:10px 13px;color:#c6d1b6;font-size:12px;margin-top:15px}
+.preview{position:fixed;inset:0;background:#030703ce;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}.preview[hidden]{display:none!important}.preview-card{background:#1b2b1e;border:1px solid #9bb279;width:min(550px,100%);max-height:96vh;overflow:auto;padding:15px;position:relative}.preview img{width:100%;max-height:70vh;object-fit:contain;image-rendering:pixelated;background:#0c140f}.preview .row{margin-top:10px}.preview .row button{min-width:85px}
+@media(max-width:920px){.results{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:570px){.wrap{width:calc(100% - 18px);padding-top:10px}.panel{padding:16px}.grid{gap:7px}.metric{padding:8px}.metric strong{font-size:21px}.metric span{font-size:11px}.results{grid-template-columns:1fr}.tools{display:grid;grid-template-columns:1fr 1fr}.tools .searchbox{grid-column:1/-1}.tools button{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="mark">CYBER BUZZ CUT FOR JAN // ADMIN</span><a class="back" href="./index.html">返回活動首頁</a></div>
+  <h1>剃頭作品管理後台</h1><p class="en">BUZZ CUT CONTROL CENTER</p>
+  <p class="sub">只有阿然的管理員帳號可以查看個別剃頭作品與留言。</p>
+  <section class="panel login" id="loginPanel">
+    <h2>管理員登入</h2>
+    <form id="loginForm" autocomplete="on">
+      <label for="email">電子郵件</label><input id="email" class="input" type="email" required autocomplete="username" placeholder="Supabase Auth 管理員帳號">
+      <label for="password">密碼</label><input id="password" class="input" type="password" required autocomplete="current-password">
+      <div class="btn-row"><button type="submit" id="loginButton">登入管理後台</button></div>
+    </form>
+    <p id="loginStatus" class="status" role="status" aria-live="polite"></p>
+    <p class="hint">本頁不儲存管理員密碼；登入權杖僅在目前分頁記憶體中保留。關閉或重新整理後需要重新登入。</p>
+  </section>
+  <section id="dashboard" hidden>
+    <div class="grid" aria-label="整體統計">
+      <div class="metric"><span>參與總人數</span><strong id="participants">—</strong></div>
+      <div class="metric"><span>累計剃除面積</span><strong id="totalArea">—</strong><span>cm²</span></div>
+      <div class="metric"><span>完整剃完頭數</span><strong id="fullHeads">—</strong></div>
+    </div>
+    <div class="tools">
+      <div class="searchbox"><label for="search">搜尋暱稱</label><input id="search" class="input" type="search" placeholder="輸入暱稱或部分字詞"></div>
+      <button id="searchBtn">搜尋</button><button id="csvBtn" class="outline">匯出 CSV</button><button id="logoutBtn" class="danger">登出</button>
+    </div>
+    <p class="status" id="dashboardStatus" role="status" aria-live="polite"></p>
+    <div class="results" id="results"></div>
+    <div class="paginate" id="pages"><button id="prevBtn" class="outline">上一頁</button><span id="pageLabel">第 1 頁</span><button id="nextBtn" class="outline">下一頁</button></div>
+    <p class="tip">作品圖片儲存在私人 Supabase Storage，僅管理員登入後可讀取。未顯示圖片的舊投稿不會被刪除。</p>
+  </section>
+</div>
+<div class="preview" id="preview" hidden role="dialog" aria-modal="true" aria-label="剃頭作品大圖">
+  <div class="preview-card"><img id="previewImg" alt="剃頭完成作品">
+    <div class="row"><strong id="previewName"></strong><div class="btn-row" style="margin:0"><button id="downloadPreview" class="outline">下載圖片</button><button id="closePreview" class="outline">關閉</button></div></div>
+  </div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const PROJECT_URL='https://xmtjhkolyxvhdfmmjdxd.supabase.co';
+  const PUBLISHABLE_KEY='sb_publishable_UkVvWUOLc9-4LRiebD1XwQ_AAXd5YRP';
+  const BUCKET='buzz-game-works';
+  const PAGE_SIZE=12;
+  const $=id=>document.getElementById(id);
+  let session=null,offset=0,total=0,activeSearch='',items=[],busy=false,loadVersion=0,previewItem=null;
+  const objectUrls=new Map();
+  function notify(id,message,isError=false){const el=$(id);el.textContent=message;el.classList.toggle('error',isError)}
+  function revokeImages(){for(const url of objectUrls.values())URL.revokeObjectURL(url);objectUrls.clear()}
+  function clearSession(){session=null;items=[];loadVersion++;revokeImages();$('results').replaceChildren();$('preview').hidden=true;$('dashboard').hidden=true;$('loginPanel').hidden=false;$('password').value='';notify('loginStatus','')}
+  async function fetchJson(url,options={}){
+    const res=await fetch(url,options);const body=await res.json().catch(()=>null);
+    if(!res.ok)throw new Error(body?.msg||body?.message||body?.error_description||body?.error||`HTTP ${res.status}`);
+    return body;
+  }
+  async function renewToken(){
+    if(!session)return false;
+    if(Date.now()+45000<session.expiresAt)return true;
+    const body=await fetchJson(`${PROJECT_URL}/auth/v1/token?grant_type=refresh_token`,{
+      method:'POST',headers:{'apikey':PUBLISHABLE_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({refresh_token:session.refreshToken})
+    });
+    session={accessToken:body.access_token,refreshToken:body.refresh_token,expiresAt:Date.now()+Number(body.expires_in||3600)*1000};
+    return true;
+  }
+  async function credentials(){await renewToken();return {apikey:PUBLISHABLE_KEY,Authorization:`Bearer ${session.accessToken}`}}
+  async function rpc(payload){
+    return await fetchJson(`${PROJECT_URL}/rest/v1/rpc/list_buzz_game_entries_admin`,{
+      method:'POST',headers:{...(await credentials()),'Content-Type':'application/json'},body:JSON.stringify(payload)
+    });
+  }
+  function labelDate(s){if(!s)return '—';try{return new Date(s).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false})}catch{return s}}
+  function make(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=String(text);return el}
+  async function loadPhoto(item,placeholder,version){
+    const path=item.image_path;
+    if(!path)return;
+    try{
+      await renewToken();
+      const url=`${PROJECT_URL}/storage/v1/object/authenticated/${BUCKET}/${path.split('/').map(encodeURIComponent).join('/')}`;
+      const response=await fetch(url,{headers:await credentials(),cache:'no-store'});
+      if(!response.ok)throw Error(`HTTP ${response.status}`);
+      const blob=await response.blob();
+      if(blob.type&&!blob.type.includes('image/'))throw Error('圖片格式不正確');
+      if(version!==loadVersion)return;
+      const objectUrl=URL.createObjectURL(blob);objectUrls.set(String(item.id),objectUrl);
+      const img=make('img');img.src=objectUrl;img.alt=`${item.nickname} 的剃頭作品`;
+      placeholder.replaceChildren(img);
+      img.addEventListener('click',()=>openPreview(item));
+      img.style.cursor='zoom-in';
+    }catch(e){if(version===loadVersion)placeholder.textContent='圖片載入失敗'}
+  }
+  function openPreview(item){const url=objectUrls.get(String(item.id));if(!url)return;previewItem=item;$('previewImg').src=url;$('previewName').textContent=`#${item.id} ${item.nickname}`;$('preview').hidden=false;$('closePreview').focus()}
+  function closePreview(){previewItem=null;$('preview').hidden=true;$('previewImg').removeAttribute('src')}
+  function renderCards(){
+    revokeImages();loadVersion++;const version=loadVersion;
+    const root=$('results');root.replaceChildren();
+    if(!items.length){root.append(make('div','empty','目前沒有符合條件的投稿紀錄。'));return}
+    for(const item of items){
+      const card=make('article','entry');const image=make('div','photo');image.append(make('span','none',item.image_path?'載入作品中……':'尚無作品圖片'));
+      card.append(image);const info=make('div','info');
+      const head=make('div','row');head.append(make('strong','name',item.nickname),make('span','id',`#${item.id}`));info.append(head);
+      info.append(make('div','date',labelDate(item.created_at)));
+      info.append(make('div','area',`剃除 ${item.shaved_area} cm² · ${item.fully_shaved?'完整剃成三分頭':'部分剃除'}`));
+      info.append(make('div','message',item.message?.trim()||'（未留下留言）'));
+      card.append(info);
+      if(item.image_path){const btn=make('button','outline','放大／下載作品');btn.addEventListener('click',()=>{
+        const src=objectUrls.get(String(item.id));if(src)openPreview(item);else notify('dashboardStatus','圖片尚未載入，請稍候重試。');
+      });card.append(btn)}
+      root.append(card);
+      if(item.image_path)loadPhoto(item,image,version);
+    }
+  }
+  async function listEntries(){
+    if(!session)return;notify('dashboardStatus','正在讀取投稿紀錄……');
+    const payload=await rpc({p_limit:PAGE_SIZE,p_offset:offset,p_search:activeSearch});
+    if(!payload||!Array.isArray(payload.items))throw Error('收到非預期的資料格式');
+    items=payload.items;total=Number(payload.total)||0;
+    $('participants').textContent=Number(payload.participants||0).toLocaleString('zh-TW');
+    $('totalArea').textContent=Number(payload.area_total||0).toLocaleString('zh-TW');
+    $('fullHeads').textContent=Number(payload.fully_shaved||0).toLocaleString('zh-TW');
+    $('pageLabel').textContent=`第 ${Math.floor(offset/PAGE_SIZE)+1} 頁／共 ${Math.max(1,Math.ceil(total/PAGE_SIZE))} 頁`;
+    $('prevBtn').disabled=offset===0;$('nextBtn').disabled=offset+PAGE_SIZE>=total;
+    renderCards();notify('dashboardStatus',`找到 ${total} 筆紀錄。`);
+  }
+  async function refresh(){try{await listEntries()}catch(e){notify('dashboardStatus',`無法取得紀錄：${e.message}`,true)}}
+  $('loginForm').addEventListener('submit',async e=>{
+    e.preventDefault();if(busy)return;busy=true;$('loginButton').disabled=true;
+    notify('loginStatus','驗證身分中……');
+    try{
+      const response=await fetchJson(`${PROJECT_URL}/auth/v1/token?grant_type=password`,{
+        method:'POST',headers:{apikey:PUBLISHABLE_KEY,'Content-Type':'application/json'},
+        body:JSON.stringify({email:$('email').value.trim(),password:$('password').value})
+      });
+      session={accessToken:response.access_token,refreshToken:response.refresh_token,
+        expiresAt:Date.now()+Number(response.expires_in||3600)*1000};
+      // 先向受管理員權限保護的 RPC 詢問；非管理員絕對不能看到後台內容。
+      const first=await rpc({p_limit:PAGE_SIZE,p_offset:0,p_search:''});
+      if(!first||!Array.isArray(first.items))throw Error('管理權限驗證未通過');
+      offset=0;activeSearch='';$('search').value='';
+      $('loginPanel').hidden=true;$('dashboard').hidden=false;$('password').value='';
+      await listEntries();
+    }catch(err){clearSession();notify('loginStatus',`登入失敗或無管理權限：${err.message}`,true)}
+    finally{busy=false;$('loginButton').disabled=false}
+  });
+  $('logoutBtn').addEventListener('click',async()=>{
+    const token=session?.accessToken;clearSession();
+    if(token)fetch(`${PROJECT_URL}/auth/v1/logout`,{method:'POST',headers:{apikey:PUBLISHABLE_KEY,Authorization:`Bearer ${token}`}}).catch(()=>{});
+  });
+  $('searchBtn').addEventListener('click',()=>{offset=0;activeSearch=$('search').value.trim();refresh()});
+  $('search').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('searchBtn').click()}});
+  $('prevBtn').addEventListener('click',()=>{offset=Math.max(0,offset-PAGE_SIZE);refresh()});
+  $('nextBtn').addEventListener('click',()=>{offset+=PAGE_SIZE;refresh()});
+  $('closePreview').addEventListener('click',closePreview);
+  $('downloadPreview').addEventListener('click',()=>{if(!previewItem)return;const url=objectUrls.get(String(previewItem.id));if(!url)return;const link=make('a');link.href=url;link.download=`buzzcut_${previewItem.id}.webp`;document.body.append(link);link.click();link.remove()});
+  $('preview').addEventListener('click',e=>{if(e.target===$('preview'))closePreview()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('preview').hidden)closePreview()});
+  // CSV UTF-8 BOM; protect spreadsheet consumers from formula injection.
+  function csvCell(value){let v=String(value??'');if(/^[\s\uFEFF]*[=+@\-]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'}
+  $('csvBtn').addEventListener('click',async()=>{
+    if(!session||busy)return;busy=true;$('csvBtn').disabled=true;
+    try{
+      notify('dashboardStatus','正在匯出 CSV……');const all=[];
+      for(let page=0;page<100;page++){
+        const data=await rpc({p_limit:100,p_offset:page*100,p_search:activeSearch});
+        if(!Array.isArray(data.items))throw Error('匯出資料格式錯誤');
+        all.push(...data.items);
+        if(all.length>=Number(data.total)||data.items.length===0)break;
+      }
+      const headers=['ID','暱稱','剃除面積(cm²)','完整剃完','留言','提交時間(台灣)','作品圖片路徑'];
+      const rows=all.map(x=>[x.id,x.nickname,x.shaved_area,x.fully_shaved?'是':'否',x.message||'',labelDate(x.created_at),x.image_path||'']);
+      const csv='\ufeff'+[headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n');
+      const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+      const link=make('a');link.href=url;link.download=`buzzcut_entries_${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      notify('dashboardStatus',`已匯出 ${rows.length} 筆紀錄。`);
+    }catch(err){notify('dashboardStatus',`CSV 匯出失敗：${err.message}`,true)}
+    finally{busy=false;$('csvBtn').disabled=false}
+  });
+})();
+</script>
+</body>
+</html>
