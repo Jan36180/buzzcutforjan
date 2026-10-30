@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171b12"><title>阿然的賽博剃頭｜CYBER BUZZ CUT FOR JAN</title><style>
 
-/* Local GitHub Pages fonts. Paths are relative to the repository-root index.html.
-   FZPixel covers Chinese glyphs only; Latin glyphs fall through to GlitchGoblin. */
+/* Local GitHub Pages fonts: Taipei Sans for interface text and Glitch Goblin
+   for the English main heading. The user-specified directory is `font` (singular). */
 @font-face {
-  font-family: "FZPixel";
-  src: url("./fonts/方正像素12.TTF") format("truetype");
+  font-family: "TaipeiSansTC";
+  src: url("./font/TaipeiSansTCBeta-Bold.ttf") format("truetype");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31BF,
-    U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
 }
 @font-face {
   font-family: "GlitchGoblin";
@@ -257,9 +255,9 @@ footer a{color:#d4df85;text-decoration:underline;text-underline-offset:3px}
   .layout > .game-panel { width:100%; }
 }
 
-/* Apply both font files across the actual interface, including components using
-   CSS font shorthands above. Sizes, weights, spacing and layout are unchanged. */
-:root { --site-pixel-font: "FZPixel", "GlitchGoblin", "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif; }
+/* Keep all Chinese and general interface text consistently in Taipei Sans,
+   overriding earlier font shorthands without changing sizes or layout. */
+:root { --site-pixel-font: "TaipeiSansTC", "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif; }
 body, button, input, textarea, select,
 .top, .panel-top, .panel-top .tag, .stage-top, .stat-note, .stage-status,
 .statbox, .statbox .big, .statbox .unit, .field, .btn,
