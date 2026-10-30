@@ -176,7 +176,7 @@ button{font:700 14px TaipeiSans,"Microsoft JhengHei",sans-serif;cursor:pointer;b
   $('prevBtn').addEventListener('click',()=>{offset=Math.max(0,offset-PAGE_SIZE);refresh()});
   $('nextBtn').addEventListener('click',()=>{offset+=PAGE_SIZE;refresh()});
   $('closePreview').addEventListener('click',closePreview);
-  $('downloadPreview').addEventListener('click',()=>{if(!previewItem)return;const url=objectUrls.get(String(previewItem.id));if(!url)return;const link=make('a');link.href=url;link.download=`buzzcut_${previewItem.id}.webp`;document.body.append(link);link.click();link.remove()});
+  $('downloadPreview').addEventListener('click',()=>{if(!previewItem)return;const url=objectUrls.get(String(previewItem.id));if(!url)return;const link=make('a');link.href=url;link.download=`buzzcut_${previewItem.id}.${(previewItem.image_path||'').split('.').pop().toLowerCase()||'png'}`;document.body.append(link);link.click();link.remove()});
   $('preview').addEventListener('click',e=>{if(e.target===$('preview'))closePreview()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('preview').hidden)closePreview()});
   // CSV UTF-8 BOM; protect spreadsheet consumers from formula injection.
