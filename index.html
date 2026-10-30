@@ -1,5 +1,27 @@
 <!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171b12"><title>阿然的賽博剃頭｜CYBER BUZZ CUT FOR JAN</title><style>
+
+/* Local GitHub Pages fonts. Paths are relative to the repository-root index.html.
+   FZPixel covers Chinese glyphs only; Latin glyphs fall through to GlitchGoblin. */
+@font-face {
+  font-family: "FZPixel";
+  src: url("./fonts/方正像素12.TTF") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+2E80-2FFF, U+3000-303F, U+3100-312F, U+31A0-31BF,
+    U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "GlitchGoblin";
+  src: url("./fonts/GlitchGoblin.woff2") format("woff2"),
+       url("./fonts/GlitchGoblin.woff") format("woff"),
+       url("./fonts/GlitchGoblin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root{--bg:#141a12;--panel:#1c261b;--panel-strong:#111911;--line:#536446;--green:#d6e499;--warm:#e9e4cb;--dim:#abb69c;--gold:#dcb978;--orange:#d7a878}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -234,6 +256,25 @@ footer a{color:#d4df85;text-decoration:underline;text-underline-offset:3px}
   /* Preserve touch target size on phones; the 25% reduction applies to wider screens. */
   .layout > .game-panel { width:100%; }
 }
+
+/* Apply both font files across the actual interface, including components using
+   CSS font shorthands above. Sizes, weights, spacing and layout are unchanged. */
+:root { --site-pixel-font: "FZPixel", "GlitchGoblin", "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif; }
+body, button, input, textarea, select,
+.top, .panel-top, .panel-top .tag, .stage-top, .stat-note, .stage-status,
+.statbox, .statbox .big, .statbox .unit, .field, .btn,
+.counter, .modal, .modal .mark, .modal h2, .modal button,
+.brush-panel, .stage-wrap .brush-panel, .stage-wrap .stage-area,
+.site-top, .intro-line, .lang-toggle, .rules-wide-button, .back-link,
+.hero .zh, .privacy-content, .review-card, .review-field, .review-status,
+.stage-hint, .small, .note, .review-privacy, .sidebar, footer {
+  font-family: var(--site-pixel-font);
+}
+/* The English title intentionally uses Glitch Goblin, not the former Impact fallback. */
+h1, .hero h1 {
+  font-family: "GlitchGoblin", Impact, "Arial Black", sans-serif;
+}
+
 </style></head><body><canvas id="camo" aria-hidden="true"></canvas>
 <div class="shell" id="siteShell">
   <div class="site-top" id="siteTop">
